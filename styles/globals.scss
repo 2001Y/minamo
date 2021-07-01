@@ -9,7 +9,7 @@
   z-index: 999999999999;
   transition: .5s;
   &.start {
-    animation: loadbar 5s forwards;
+    animation: loadbar 6s forwards;
   }
   &.done {
     width: 100vw;
@@ -25,6 +25,9 @@
   }
   5% {
     width: 10vw;
+  }
+  40% {
+    width: 55vw;
   }
   100% {
     width: 60vw;
