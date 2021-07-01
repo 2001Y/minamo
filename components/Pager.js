@@ -1,10 +1,10 @@
 import Link from "next/link";
+import { join } from "path";
+
+var pageNationStep = 2;
 
 const Pager = (props) => {
-  const { pageTotal, pageNow, href } = props;
-  console.log(props);
-
-  var pageNationStep = 2;
+  const { pageTotal, pageNow, categoryName } = props;
 
   var prevArray = [];
   var nextArray = [];
@@ -56,7 +56,7 @@ const Pager = (props) => {
     <div className="pager">
       {prevArray.map((e) => (
         <span className="pager-item">
-          <Link href={href + String(e.url)}>
+          <Link href={join(categoryName, "?p=" + String(e.url))}>
             <a>{e.name}</a>
           </Link>
         </span>
@@ -66,7 +66,7 @@ const Pager = (props) => {
 
       {nextArray.map((e) => (
         <span className="pager-item">
-          <Link href={href + String(e.url)}>
+          <Link href={join(categoryName, "?p=" + String(e.url))}>
             <a>{e.name}</a>
           </Link>
         </span>

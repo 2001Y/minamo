@@ -1,32 +1,37 @@
-import fs from "fs";
+import { join } from "path";
 
 import Link from "next/link";
 
 import Layout from "components/Layout";
 import Pager from "components/Pager";
 
-import { readContentFiles } from "lib/content-loader";
+const pageLength = 7; //1pageに表示するpost数
+const categoryName = "news";
 
-const COUNT_PER_PAGE = 7;
+import grayMatter from "gray-matter";
 
 export default function Archive(props) {
-  const { posts, pageNow, total, pageTotal, perPage } = props;
+  const { postList, pageNow, pageTotal } = props;
   return (
     <Layout title="アーカイブ">
-      {posts.map((post) => (
-        <div key={post.slug} className="post-teaser">
-          <h2>
-            <Link href={`/news/${post.slug}`}>
-              <a>{post.title}</a>
-            </Link>
-          </h2>
+      {postList.map((e) => (
+        <div className="post-teaser">
+          <Link href={e.url}>
+            <a>
+              <h2>{e.title}</h2>
+            </a>
+          </Link>
           <div>
-            <span>{post.published}</span>
+            <time>{e.data}</time>
           </div>
         </div>
       ))}
 
-      <Pager pageNow={pageNow} pageTotal={pageTotal} href="/news?p=" />
+      <Pager
+        pageNow={pageNow}
+        pageTotal={pageTotal}
+        categoryName={categoryName}
+      />
 
       <style jsx>{`
         .post-teaser {
@@ -42,25 +47,43 @@ export default function Archive(props) {
 }
 
 export async function getServerSideProps(context) {
+  // 記事jsonの作成
+  const fs = require("fs");
+  const postFilenameList = fs
+    .readdirSync(join("content", categoryName), { withFileTypes: true })
+    .filter((dirent) => dirent.isFile())
+    .map(({ name }) => name); // ["first.md","second.md"]
+  const postList = postFilenameList.map((postFilename) => {
+    let raw = fs.readFileSync(
+      join("content", categoryName, postFilename),
+      "utf8"
+    );
+    let frontMatter = grayMatter(raw); // { content:"本文", data: { title:"タイトル", published: 2020-07-13T00:00:00.000Z } }
+    return {
+      url: join(categoryName, postFilename.slice(0, -3)),
+      title: String(frontMatter.data.title),
+      data: String(frontMatter.data.published),
+      content: frontMatter.content,
+    };
+  });
+
+  // Pagenationのための変数準備
   if (context.query.p) {
     var pageNow = Number(context.query.p);
   } else {
     var pageNow = 1;
   }
+  const postTotal = postFilenameList.length;
+  const pageTotal = Math.ceil(postTotal / pageLength);
 
-  const end = COUNT_PER_PAGE * pageNow;
-  const start = end - COUNT_PER_PAGE;
-  const posts = await readContentFiles({ fs });
-
-  const pageTotal = Math.ceil(posts.length / COUNT_PER_PAGE);
+  let start = (pageNow - 1) * pageLength + 1;
+  let end = pageNow * pageLength;
 
   return {
     props: {
-      posts: posts.slice(start, end),
+      postList: postList.slice(start, end),
       pageNow,
-      total: posts.length,
       pageTotal,
-      perPage: COUNT_PER_PAGE,
     },
   };
 }
