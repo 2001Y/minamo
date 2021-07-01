@@ -1,0 +1,35 @@
+{
+  "name": "nextjs-blog-example-ja",
+  "version": "0.1.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "test": "jest"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.2",
+    "next": "^10.1.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "remark": "^13.0.0",
+    "remark-gfm": "^1.0.0",
+    "remark-html": "^13.0.1",
+    "remark-prism": "^1.3.5",
+    "sass": "^1.35.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
+    "babel-jest": "^27.0.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.4",
+    "react-test-renderer": "^17.0.2"
+  }
+}

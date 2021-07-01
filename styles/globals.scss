@@ -1,0 +1,32 @@
+#loadbar {
+  height: 7px;
+  width: 0;
+  background-color: aqua;
+  box-shadow: 0 0 11px 0 aqua;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999999999;
+  transition: .5s;
+  &.start {
+    animation: loadbar 5s forwards;
+  }
+  &.done {
+    width: 100vw;
+    height: 0;
+  }
+}
+@keyframes loadbar {
+  0% {
+    width: 0;
+  }
+  1% {
+    width: 10vw;
+  }
+  5% {
+    width: 10vw;
+  }
+  100% {
+    width: 60vw;
+  }
+}
