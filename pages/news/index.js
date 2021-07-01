@@ -50,7 +50,7 @@ export async function getServerSideProps(context) {
   // 記事jsonの作成
   const fs = require("fs");
   const postFilenameList = fs
-    .readdirSync(join(process.cwd(), "content", categoryName), {
+    .readdirSync(join(process.cwd(), "content", categoryName, "/"), {
       withFileTypes: true,
     })
     .filter((dirent) => dirent.isFile())
