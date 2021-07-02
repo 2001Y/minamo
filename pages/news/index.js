@@ -1,4 +1,4 @@
-import { join } from "path";
+import { join, resolve, extname } from "path";
 
 import Link from "next/link";
 
@@ -50,11 +50,12 @@ export async function getServerSideProps(context) {
   // 記事jsonの作成
   const fs = require("fs");
   const postFilenameList = fs
-    .readdirSync(join(process.cwd(), "content", categoryName, "/"), {
+    .readdirSync(resolve(process.cwd(), "content", categoryName), {
       withFileTypes: true,
     })
     .filter((dirent) => dirent.isFile())
-    .map(({ name }) => name); // ["first.md","second.md"]
+    .map(({ name }) => name)
+    .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
   const postList = postFilenameList.map((postFilename) => {
     let raw = fs.readFileSync(
       join(process.cwd(), "content", categoryName, postFilename),
