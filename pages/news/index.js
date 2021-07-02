@@ -1,4 +1,4 @@
-import { join, resolve, extname, basename } from "path";
+import { join, resolve, extname, parse, basename } from "path";
 
 import Link from "next/link";
 
@@ -57,7 +57,7 @@ export async function getServerSideProps(context) {
   const DIR = join(process.cwd(), "content/news");
   const postFilenameList = fs
     .readdirSync(DIR)
-    .filter((filename) => filename.endsWith(".md"));
+    .filter((filename) => parse(filename).ext === ".md");
 
   const postList = postFilenameList.map((postFilename) => {
     let raw = fs.readFileSync(
