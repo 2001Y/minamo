@@ -7,6 +7,7 @@ import Pager from "components/Pager";
 
 const pageLength = 7; //1pageに表示するpost数
 const categoryName = basename(__filename, ".js");
+console.log(categoryName)
 
 import grayMatter from "gray-matter";
 
@@ -50,11 +51,7 @@ export async function getServerSideProps(context) {
   // 記事jsonの作成
   const fs = require("fs");
   const postFilenameList = fs
-    .readdirSync("content/news", "utf-8", {
-      withFileTypes: true,
-    })
-    .filter((dirent) => dirent.isFile())
-    .map(({ name }) => name)
+    .readdirSync(resolve("content", categoryName), "utf-8")
     .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
 
   const postList = postFilenameList.map((postFilename) => {

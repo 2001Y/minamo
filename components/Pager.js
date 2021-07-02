@@ -6,6 +6,8 @@ var pageNationStep = 2;
 const Pager = (props) => {
   const { pageTotal, pageNow, categoryName } = props;
 
+  console.log(categoryName);
+
   var prevArray = [];
   var nextArray = [];
 
@@ -56,7 +58,7 @@ const Pager = (props) => {
     <div className="pager">
       {prevArray.map((e) => (
         <span className="pager-item">
-          <Link href={join(categoryName, "?p=" + String(e.url))}>
+          <Link href={"?p=" + String(e.url)}>
             <a>{e.name}</a>
           </Link>
         </span>
@@ -66,7 +68,7 @@ const Pager = (props) => {
 
       {nextArray.map((e) => (
         <span className="pager-item">
-          <Link href={join(categoryName, "?p=" + String(e.url))}>
+          <Link href={"?p=" + String(e.url)}>
             <a>{e.name}</a>
           </Link>
         </span>
