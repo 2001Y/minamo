@@ -1,4 +1,4 @@
-import { join, resolve, extname } from "path";
+import { join, resolve, extname, basename } from "path";
 
 import Link from "next/link";
 
@@ -6,7 +6,7 @@ import Layout from "components/Layout";
 import Pager from "components/Pager";
 
 const pageLength = 7; //1pageに表示するpost数
-const categoryName = "news";
+const categoryName = basename(__filename, ".js");
 
 import grayMatter from "gray-matter";
 
@@ -50,15 +50,16 @@ export async function getServerSideProps(context) {
   // 記事jsonの作成
   const fs = require("fs");
   const postFilenameList = fs
-    .readdirSync(resolve("content", categoryName), {
+    .readdirSync(resolve(__dirname,"content", categoryName), {
       withFileTypes: true,
     })
     .filter((dirent) => dirent.isFile())
     .map(({ name }) => name)
     .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
+
   const postList = postFilenameList.map((postFilename) => {
     let raw = fs.readFileSync(
-      resolve(process.cwd(), "content", categoryName, postFilename),
+      resolve(__dirname, "content", categoryName, postFilename),
       "utf8"
     );
     let frontMatter = grayMatter(raw); // { content:"本文", data: { title:"タイトル", published: 2020-07-13T00:00:00.000Z } }
