@@ -50,9 +50,14 @@ export default function Archive(props) {
 export async function getServerSideProps(context) {
   // 記事jsonの作成
   const fs = require("fs");
+  // const postFilenameList = fs
+  //   .readdirSync(resolve("./content", categoryName), "utf-8")
+  //   .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
+
+  const DIR = join(process.cwd(), "content/news");
   const postFilenameList = fs
-    .readdirSync(resolve("./content", categoryName), "utf-8")
-    .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
+    .readdirSync(DIR)
+    .filter((filename) => filename.endsWith(".md"));
 
   const postList = postFilenameList.map((postFilename) => {
     let raw = fs.readFileSync(
