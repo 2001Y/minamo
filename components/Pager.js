@@ -4,7 +4,12 @@ import { join } from "path";
 var pageNationStep = 2;
 
 const Pager = (props) => {
-  const { pageTotal, pageNow, categoryName } = props;
+  const { pageTotal, pageNow } = props;
+
+  let prevPath = "";
+  if (props.prevPath) {
+    prevPath = props.prevPath;
+  }
 
   var prevArray = [];
   var nextArray = [];
@@ -56,7 +61,7 @@ const Pager = (props) => {
     <div className="pager">
       {prevArray.map((e, i) => (
         <span className="pager-item" key={i}>
-          <Link href={"?p=" + String(e.url)}>
+          <Link href={prevPath + String(e.url)}>
             <a>{e.name}</a>
           </Link>
         </span>
@@ -66,7 +71,7 @@ const Pager = (props) => {
 
       {nextArray.map((e, i) => (
         <span className="pager-item" key={i}>
-          <Link href={"?p=" + String(e.url)}>
+          <Link href={prevPath + String(e.url)}>
             <a>{e.name}</a>
           </Link>
         </span>

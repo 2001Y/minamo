@@ -8,11 +8,10 @@ import Layout from "components/Layout";
 import Pager from "components/Pager";
 
 const pageLength = 7; //1pageに表示するpost数
-const categoryName = basename(__filename, ".js").toString();
-const pageNow = 1;
+const categoryName = basename(resolve(__dirname, ".."));
 
 export default function Archive(props) {
-  const { postList, pageTotal } = props;
+  const { postList, pageNow, pageTotal } = props;
   return (
     <Layout title="アーカイブ">
       {postList.map((e, i) => (
@@ -28,12 +27,17 @@ export default function Archive(props) {
         </div>
       ))}
 
-      <Pager pageNow={pageNow} pageTotal={pageTotal} prevPath="news/p/" />
+      <Pager
+        pageNow={pageNow}
+        pageTotal={pageTotal}
+      />
     </Layout>
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(e) {
+  let pageNow = e.params.page;
+
   let postFilenameList = fs
     .readdirSync(join(process.cwd(), "content", categoryName), "utf-8")
     .filter((file) => file.endsWith("md")); // ["first.md","second.md"];
@@ -60,7 +64,25 @@ export async function getStaticProps() {
   return {
     props: {
       postList: postList.slice(start, end),
+      pageNow,
       pageTotal,
     },
+  };
+}
+
+//生成するurlを確定させる
+export async function getStaticPaths() {
+  let postTotal = fs
+    .readdirSync(join(process.cwd(), "content", categoryName), "utf-8")
+    .filter((file) => file.endsWith("md")).length;
+  let pageTotal = Math.ceil(postTotal / pageLength);
+
+  let pathList = [...Array(pageTotal)].map((_, i) => {
+    return { params: { page: String(i) } };
+  });
+
+  return {
+    paths: pathList,
+    fallback: false,
   };
 }
