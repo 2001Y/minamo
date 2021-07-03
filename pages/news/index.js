@@ -55,12 +55,7 @@ export async function getServerSideProps(context) {
     );
     let frontMatter = grayMatter(raw); // { content:"本文", data: { title:"タイトル", published: 2020-07-13T00:00:00.000Z } }
     return {
-      url: resolve(
-        process.cwd(),
-        "MD",
-        categoryName,
-        postFilename.slice(0, -3)
-      ),
+      url: join(categoryName, postFilename.slice(0, -3)),
       title: String(frontMatter.data.title),
       data: String(frontMatter.data.published),
       content: frontMatter.content,
