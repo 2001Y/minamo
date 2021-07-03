@@ -39,24 +39,24 @@ export default function Archive(props) {
 export async function getServerSideProps(context) {
   // 記事jsonの作成
   const fs = require("fs");
-  // const postFilenameList = fs
-  //   .readdirSync(resolve("./content", categoryName), "utf-8")
-  //   .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
-
-  const DIR = join(__dirname, "content", categoryName);
   const postFilenameList = fs
-    .readdirSync(DIR)
-    .filter((filename) => parse(filename).ext === ".md");
+    .readdirSync("content/news", "utf-8")
+    .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
+
+  // const DIR = join(process.cwd(), "content", categoryName);
+  // const postFilenameList = fs
+  //   .readdirSync(DIR)
+  //   .filter((filename) => parse(filename).ext === ".md");
 
   const postList = postFilenameList.map((postFilename) => {
     let raw = fs.readFileSync(
-      resolve(__dirname, "content", categoryName, postFilename),
+      resolve(process.cwd(), "content", categoryName, postFilename),
       "utf8"
     );
     let frontMatter = grayMatter(raw); // { content:"本文", data: { title:"タイトル", published: 2020-07-13T00:00:00.000Z } }
     return {
       url: resolve(
-        __dirname,
+        process.cwd(),
         "content",
         categoryName,
         postFilename.slice(0, -3)
