@@ -43,26 +43,21 @@ export async function getServerSideProps(context) {
   //   .readdirSync(resolve("./content", categoryName), "utf-8")
   //   .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
 
-  const DIR = join(process.cwd(), ".next/server/content", categoryName);
+  const DIR = join(__dirname, "content", categoryName);
   const postFilenameList = fs
     .readdirSync(DIR)
     .filter((filename) => parse(filename).ext === ".md");
 
   const postList = postFilenameList.map((postFilename) => {
     let raw = fs.readFileSync(
-      resolve(
-        process.cwd(),
-        ".next/server/content",
-        categoryName,
-        postFilename
-      ),
+      resolve(__dirname, "content", categoryName, postFilename),
       "utf8"
     );
     let frontMatter = grayMatter(raw); // { content:"本文", data: { title:"タイトル", published: 2020-07-13T00:00:00.000Z } }
     return {
       url: resolve(
-        process.cwd(),
-        ".next/server/content",
+        __dirname,
+        "content",
         categoryName,
         postFilename.slice(0, -3)
       ),
