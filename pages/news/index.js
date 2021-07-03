@@ -10,7 +10,7 @@ const categoryName = basename(__filename, ".js");
 
 let basePath = process.cwd();
 if (process.env.NODE_ENV === "production") {
-  basePath = path.join(process.cwd(), ".next/server/chunks");
+  basePath = join(process.cwd(), ".next/server/chunks");
 }
 
 import grayMatter from "gray-matter";
