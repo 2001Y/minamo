@@ -1,7 +1,0 @@
-{
-    "functions": {
-      "news/index.js": {
-        "includeFiles": "content/**"
-      }
-    }
-  }
