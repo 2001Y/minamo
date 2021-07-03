@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
   // 記事jsonの作成
   const fs = require("fs");
   const postFilenameList = fs
-    .readdirSync("content/news", "utf-8")
+    .readdirSync(resolve("MD", categoryName), "utf-8")
     .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
 
   // const DIR = join(process.cwd(), "content", categoryName);
@@ -50,14 +50,14 @@ export async function getServerSideProps(context) {
 
   const postList = postFilenameList.map((postFilename) => {
     let raw = fs.readFileSync(
-      resolve(process.cwd(), "content", categoryName, postFilename),
+      resolve(process.cwd(), "MD", categoryName, postFilename),
       "utf8"
     );
     let frontMatter = grayMatter(raw); // { content:"本文", data: { title:"タイトル", published: 2020-07-13T00:00:00.000Z } }
     return {
       url: resolve(
         process.cwd(),
-        "content",
+        "MD",
         categoryName,
         postFilename.slice(0, -3)
       ),
