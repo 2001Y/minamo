@@ -1,4 +1,4 @@
-import { join, resolve, extname, parse, basename } from "path";
+import { join, resolve, parse, basename } from "path";
 
 import Link from "next/link";
 
@@ -7,7 +7,6 @@ import Pager from "components/Pager";
 
 const pageLength = 7; //1pageに表示するpost数
 const categoryName = basename(__filename, ".js");
-console.log(categoryName);
 
 import grayMatter from "gray-matter";
 
@@ -15,8 +14,8 @@ export default function Archive(props) {
   const { postList, pageNow, pageTotal } = props;
   return (
     <Layout title="アーカイブ">
-      {postList.map((e) => (
-        <div className="post-teaser">
+      {postList.map((e, i) => (
+        <div className="post-teaser" key={i}>
           <Link href={e.url}>
             <a>
               <h2>{e.title}</h2>
@@ -33,16 +32,6 @@ export default function Archive(props) {
         pageTotal={pageTotal}
         categoryName={categoryName}
       />
-
-      <style jsx>{`
-        .post-teaser {
-          margin-bottom: 2em;
-        }
-
-        .post-teaser h2 a {
-          text-decoration: none;
-        }
-      `}</style>
     </Layout>
   );
 }
@@ -54,19 +43,23 @@ export async function getServerSideProps(context) {
   //   .readdirSync(resolve("./content", categoryName), "utf-8")
   //   .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
 
-  const DIR = join(process.cwd(), "content/news");
+  const DIR = join(".next/server/content", categoryName);
   const postFilenameList = fs
     .readdirSync(DIR)
     .filter((filename) => parse(filename).ext === ".md");
 
   const postList = postFilenameList.map((postFilename) => {
     let raw = fs.readFileSync(
-      resolve("./content", categoryName, postFilename),
+      resolve(".next/server/content", categoryName, postFilename),
       "utf8"
     );
     let frontMatter = grayMatter(raw); // { content:"本文", data: { title:"タイトル", published: 2020-07-13T00:00:00.000Z } }
     return {
-      url: resolve(categoryName, postFilename.slice(0, -3)),
+      url: resolve(
+        ".next/server/content",
+        categoryName,
+        postFilename.slice(0, -3)
+      ),
       title: String(frontMatter.data.title),
       data: String(frontMatter.data.published),
       content: frontMatter.content,

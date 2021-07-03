@@ -6,8 +6,6 @@ var pageNationStep = 2;
 const Pager = (props) => {
   const { pageTotal, pageNow, categoryName } = props;
 
-  console.log(categoryName);
-
   var prevArray = [];
   var nextArray = [];
 
@@ -56,8 +54,8 @@ const Pager = (props) => {
 
   return (
     <div className="pager">
-      {prevArray.map((e) => (
-        <span className="pager-item">
+      {prevArray.map((e, i) => (
+        <span className="pager-item" key={i}>
           <Link href={"?p=" + String(e.url)}>
             <a>{e.name}</a>
           </Link>
@@ -66,25 +64,13 @@ const Pager = (props) => {
 
       <span className="pager-item">{pageNow}</span>
 
-      {nextArray.map((e) => (
-        <span className="pager-item">
+      {nextArray.map((e, i) => (
+        <span className="pager-item" key={i}>
           <Link href={"?p=" + String(e.url)}>
             <a>{e.name}</a>
           </Link>
         </span>
       ))}
-
-      <style jsx>{`
-        .pager {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          flew-wrap: nowrap;
-        }
-        .pager-item {
-          margin: 0 1em;
-        }
-      `}</style>
     </div>
   );
 };
