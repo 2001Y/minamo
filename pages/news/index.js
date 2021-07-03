@@ -8,6 +8,11 @@ import Pager from "components/Pager";
 const pageLength = 7; //1pageに表示するpost数
 const categoryName = basename(__filename, ".js");
 
+let basePath = process.cwd();
+if (process.env.NODE_ENV === "production") {
+  basePath = path.join(process.cwd(), ".next/server/chunks");
+}
+
 import grayMatter from "gray-matter";
 
 export default function Archive(props) {
@@ -40,16 +45,14 @@ export async function getServerSideProps(context) {
   // 記事jsonの作成
   const fs = require("fs");
   const postFilenameList = fs
-    .readdirSync("content/news", "utf-8")
-    .filter((file) => file.endsWith("md")); // ["first.md","second.md"]¥
-
-  // const DIR = join(process.cwd(), "content", categoryName);
-  // const postFilenameList = fs
-  //   .readdirSync(DIR)
-  //   .filter((filename) => parse(filename).ext === ".md");
+    .readdirSync(join(basePath, "content", categoryName), "utf-8")
+    .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
 
   const postList = postFilenameList.map((postFilename) => {
-    let raw = fs.readFileSync(`content/news/${postFilename}`, "utf8");
+    let raw = fs.readFileSync(
+      join(basePath, "content", categoryName, postFilename),
+      "utf8"
+    );
     let frontMatter = grayMatter(raw); // { content:"本文", data: { title:"タイトル", published: 2020-07-13T00:00:00.000Z } }
     return {
       url: join("content", categoryName, postFilename.slice(0, -3)),
