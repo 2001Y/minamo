@@ -8,10 +8,7 @@ import Pager from "components/Pager";
 const pageLength = 7; //1pageに表示するpost数
 const categoryName = basename(__filename, ".js");
 
-let basePath = process.cwd();
-if (process.env.NODE_ENV === "production") {
-  basePath = join(process.cwd(), ".next/server/chunks");
-}
+import { postFilenameList, postList } from "pages/news/api/load.js";
 
 import grayMatter from "gray-matter";
 
@@ -42,34 +39,14 @@ export default function Archive(props) {
 }
 
 export async function getServerSideProps(context) {
-  // 記事jsonの作成
-  const fs = require("fs");
-  const postFilenameList = fs
-    .readdirSync(join(basePath, "content", categoryName), "utf-8")
-    .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
-
-  const postList = postFilenameList.map((postFilename) => {
-    let raw = fs.readFileSync(
-      join(basePath, "content", categoryName, postFilename),
-      "utf8"
-    );
-    let frontMatter = grayMatter(raw); // { content:"本文", data: { title:"タイトル", published: 2020-07-13T00:00:00.000Z } }
-    return {
-      url: join("content", categoryName, postFilename.slice(0, -3)),
-      title: String(frontMatter.data.title),
-      data: String(frontMatter.data.published),
-      content: frontMatter.content,
-    };
-  });
-
   // Pagenationのための変数準備
   if (context.query.p) {
     var pageNow = Number(context.query.p);
   } else {
     var pageNow = 1;
   }
-  const postTotal = postFilenameList.length;
-  const pageTotal = Math.ceil(postTotal / pageLength);
+  
+  const pageTotal = Math.ceil(postFilenameList.length / pageLength);
 
   let start = (pageNow - 1) * pageLength + 1;
   let end = pageNow * pageLength;
