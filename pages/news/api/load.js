@@ -5,12 +5,12 @@ const fs = require("fs");
 const categoryName = basename(__filename, ".js");
 
 const postFilenameList = fs
-  .readdirSync(join(process.cwd(), "content", categoryName), "utf-8")
+  .readdirSync(resolve(process.cwd(), "content", categoryName), "utf-8")
   .filter((file) => file.endsWith("md")); // ["first.md","second.md"]
 
 const postList = postFilenameList.map((postFilename) => {
   let raw = fs.readFileSync(
-    join(process.cwd(), "content", categoryName, postFilename),
+    resolve(process.cwd(), "content", categoryName, postFilename),
     "utf8"
   );
   let frontMatter = grayMatter(raw); // { content:"本文", data: { title:"タイトル", published: 2020-07-13T00:00:00.000Z } }
