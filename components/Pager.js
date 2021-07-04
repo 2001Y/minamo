@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { join } from "path";
 
 var pageNationStep = 2;
 
@@ -15,7 +14,7 @@ const Pager = (props) => {
   var nextArray = [];
 
   var prevCount = pageNow - 1;
-  var nextCount = pageTotal - pageNow;
+  var nextCount = pageTotal - pageNow - 1;
 
   var prevMax = pageNationStep;
   var nextMax = pageNationStep;

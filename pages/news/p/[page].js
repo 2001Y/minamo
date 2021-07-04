@@ -27,16 +27,13 @@ export default function Archive(props) {
         </div>
       ))}
 
-      <Pager
-        pageNow={pageNow}
-        pageTotal={pageTotal}
-      />
+      <Pager pageNow={pageNow} pageTotal={pageTotal} />
     </Layout>
   );
 }
 
 export async function getStaticProps(e) {
-  let pageNow = e.params.page;
+  let pageNow = Number(e.params.page);
 
   let postFilenameList = fs
     .readdirSync(join(process.cwd(), "content", categoryName), "utf-8")
@@ -77,8 +74,8 @@ export async function getStaticPaths() {
     .filter((file) => file.endsWith("md")).length;
   let pageTotal = Math.ceil(postTotal / pageLength);
 
-  let pathList = [...Array(pageTotal)].map((_, i) => {
-    return { params: { page: String(i) } };
+  let pathList = [...Array(pageTotal - 1)].map((_, i) => {
+    return { params: { page: String(i + 2) } };
   });
 
   return {
