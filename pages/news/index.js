@@ -6,6 +6,7 @@ import grayMatter from "gray-matter";
 
 import Layout from "components/Layout";
 import Pager from "components/Pager";
+import { formatDate } from "lib/date";
 
 const pageLength = 7; //1pageに表示するpost数
 const categoryName = basename(__filename, ".js").toString();
@@ -43,12 +44,11 @@ export async function getStaticProps() {
       join(process.cwd(), "content", categoryName, postFilename),
       "utf8"
     );
-    let frontMatter = grayMatter(raw); // { content:"本文", data: { title:"タイトル", published: 2020-07-13T00:00:00.000Z } }
+    const frontMatter = grayMatter(raw);
     return {
-      url: join("content", categoryName, postFilename.slice(0, -3)),
-      title: String(frontMatter.data.title),
-      data: String(frontMatter.data.published),
-      content: frontMatter.content,
+      url: join("/", categoryName, postFilename.slice(0, -3)),
+      title: frontMatter.data.title,
+      data: formatDate(frontMatter.data.data),
     };
   });
 

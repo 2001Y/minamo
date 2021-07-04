@@ -1,6 +1,6 @@
 ---
-title: Markdown を試す投稿
-published: 2020-07-15
+title: "Markdown を試す投稿"
+data: 2020-07-15
 ---
 
 見出し:

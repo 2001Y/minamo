@@ -1,6 +1,6 @@
 ---
-title: HTML を試す投稿
-published: 2020-07-23
+title: "HTML を試す投稿"
+data: 2020-07-23
 ---
 
 <ul>

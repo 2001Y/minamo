@@ -1,6 +1,6 @@
 ---
-title: 画像付きの投稿
-published: 2020-07-13
+title: "画像付きの投稿"
+data: 2020-07-13
 ---
 
 ![サンプル画像](/images/huper-by-joshua-earle-lWYUA42UmL8-unsplash.jpg)
