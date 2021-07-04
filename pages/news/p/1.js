@@ -1,13 +1,14 @@
 import { resolve, basename } from "path";
-
-export default function () {}
-
 const categoryName = basename(resolve(__dirname, ".."));
 
-export async function getStaticProps(context) {
+export default function HomePage() {
+  return <h1>Hello World</h1>;
+}
+
+export async function getServerSideProps() {
   return {
     redirect: {
-      permanent: true, // 永続的なリダイレクトかどうか
+      statusCode: 301,
       destination: "/" + categoryName, // リダイレクト先
     },
   };
