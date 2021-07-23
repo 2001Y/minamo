@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect } from "react";
 
 import { join, resolve, basename } from "path";
@@ -54,9 +55,9 @@ export default function Home(props) {
               <Link href="/news">ニュース</Link>
               <ul>
                 {postList.map((e, i) => (
-                  <Link href={e.url} passHref>
+                  <Link href={e.url} key={i} passHref>
                     <a>
-                      <li key={i}>
+                      <li>
                         {e.title} - <time>{e.data}</time>
                       </li>
                     </a>
