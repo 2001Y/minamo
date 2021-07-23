@@ -3,7 +3,11 @@
         font-size: 8px;
     }
 }
-*,::placeholder,::before,::after {
+
+*,
+::placeholder,
+::before,
+::after {
     font-size: inherit;
     font-family: inherit;
     line-break: strict;
@@ -17,42 +21,57 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
+
 html {
     overflow: auto;
 }
-ol,ul {
+
+ol,
+ul {
     list-style-type: none;
     list-style-position: inside;
 }
+
 a {
     color: inherit;
     text-decoration: none;
 }
-  
+
 
 /* //www.i-ryo.com/entry/2019/08/24/225050 */
 input,
 button,
 select,
 textarea {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  font: inherit;
-  outline: none;
-  display:block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    font: inherit;
+    outline: none;
+    display: block;
 }
 
 textarea {
-  resize: vertical;
+    resize: vertical;
 }
-
-input[type='checkbox'],
-input[type='radio'] {
-  display: none;
+input {
+    &:focus,&:active {
+        outline: none;
+    }
+    &[type='checkbox'],&[type='radio'] {
+        display: none;
+    }
+    &[type="range"] {
+        cursor: pointer;
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    }
 }
 
 input[type='submit'],
@@ -60,62 +79,86 @@ input[type='button'],
 label,
 button,
 select {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+::placeholder {
+    opacity: .3;
 }
 
 select::-ms-expand {
-  display: none;
+    display: none;
 }
 
 
 body {
     font-family: Helvetica, "游ゴシック", "Yu Gothic", YuGothic, -apple-system, Verdana, Meiryo;
     font-size: 16px;
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative
 }
-body, html {
-    min-height:100vh;
+
+body,
+html {
+    min-height: 100vh;
 }
+
 @supports (-webkit-touch-callout: none) {
-    body, html {
-        min-height:-webkit-fill-available
+
+    body,
+    html {
+        min-height: -webkit-fill-available
     }
 }
+
 html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color:transparent;
+    -webkit-tap-highlight-color: transparent;
     overflow-x: hidden;
     overflow-y: visible;
 }
 
-h1,h2,h3,h4,h5,h6,th {
-    font-weight: bold;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th {
+    font-weight: 900;
     font-feature-settings: "palt";
-    word-wrap:break-word;
+    word-wrap: break-word;
 }
-h2 small, h3 small, h4 small, h5 small, h6 small {
-    font-size:.4em
+
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small {
+    font-size: .4em
 }
-h2 {
+
+/* h2 {
     font-size: 3rem;
     margin-top: 4rem;
-    margin-bottom:1rem
+    margin-bottom: 1rem
 }
+
 h3 {
     font-size: 2rem;
     margin-top: 2rem;
-    margin-bottom:1rem
+    margin-bottom: 1rem
 }
+
 h4 {
     font-size: 1.5rem;
     margin-top: 2rem;
-    margin-bottom:1rem
-}
+    margin-bottom: 1rem
+} */
 
 #__next {
-    max-width: 900px;
+    max-width: 1000px;
     padding: 0 2rem;
     margin: auto;
     /* margin:5rem auto 0 auto */

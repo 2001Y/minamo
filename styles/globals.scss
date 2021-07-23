@@ -1,3 +1,35 @@
+* {
+  font-family: 'Ubuntu','Noto Sans JP', sans-serif;
+}
+p {
+  line-height: 1.7;
+  // letter-spacing: .1em;
+}
+body {
+  padding: 0 1rem;
+  &:after {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100vw;
+    height: 100vh;
+    border: solid #000 1rem;
+    @supports (-webkit-touch-callout: none) {
+      height: -webkit-fill-available;
+    }
+  }
+}
+footer {
+  padding: 4em 0;
+}
+
+#toc {
+  .active {
+    color: red;
+  }
+}
 #loadbar {
   height: 7px;
   width: 0;
@@ -34,6 +66,19 @@
   }
 }
 
+h2 {
+  font-weight: 700;
+  font-size: 3.5rem;
+  display: inline-block;
+  margin: 1.3em -.6em .7em -.1em;
+  padding: 0 .6em 0 .1em;
+  background:linear-gradient(transparent 60%, #ec9400 60%);
+}
+h3 {
+  margin-top: 2em;
+  margin-bottom: .5em;
+}
+
 
  /* Prism のコードブロックに影響を与えず <code> にスタイルを追加 */
  code:not([class]) {
@@ -49,21 +94,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0 4em;
-}
-footer {
-  margin-top: 4em;
-  padding-top: 2em;
-  padding-bottom: 2em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .post-teaser {
   margin-bottom: 2em;
 }
