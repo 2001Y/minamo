@@ -42,12 +42,16 @@ export default function Home(props) {
           </div>
           <h3>どのようなモノ/コトを紹介したいですか？</h3>
           <div className={css.flex}>
-            <h4>どのようなモノ/コトを紹介したいですか？ - 説明</h4>
-            <textarea name="メッセージ" placeholder="本文" />
+            <h4>説明</h4>
+            <textarea name="企画内容" placeholder="本文" />
           </div>
           <div className={css.flex}>
-            <h4>どのようなモノ/コトを紹介したいですか？ - URL</h4>
-            <input name="URL" type="url" placeholder="https://example.com" />
+            <h4>URL</h4>
+            <input
+              name="企画URL"
+              type="url"
+              placeholder="https://example.com"
+            />
           </div>
           <h3>ご予算</h3>
           <div className={css.flex}>
