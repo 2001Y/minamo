@@ -22,11 +22,7 @@ export default function Home(props) {
           <h3>法人名</h3>
           <input name="法人名" type="text" placeholder="株式会社 EXAMPLE" />
           <h3>メールアドレス</h3>
-          <input
-            name="メルアド"
-            type="email"
-            placeholder="email@example.com"
-          />
+          <input name="メルアド" type="email" placeholder="email@example.com" />
           <h3>担当者さまのお名前</h3>
           <input name="name" type="text" placeholder="水面 太郎" />
           <h3>サービス導入についての立場</h3>
@@ -46,20 +42,22 @@ export default function Home(props) {
           </div>
           <h3>どのようなモノ/コトを紹介したいですか？</h3>
           <div className={css.flex}>
-            <h4>説明</h4>
+            <h4>どのようなモノ/コトを紹介したいですか？ - 説明</h4>
             <textarea name="メッセージ" placeholder="本文" />
           </div>
           <div className={css.flex}>
-            <h4>URL</h4>
-            <input name="name" type="url" placeholder="https://example.com" />
+            <h4>どのようなモノ/コトを紹介したいですか？ - URL</h4>
+            <input name="URL" type="url" placeholder="https://example.com" />
           </div>
           <h3>ご予算</h3>
           <div className={css.flex}>
-            <span>10万</span><input type="range" name="予算" min="10" max="100" /><span>100万</span>
+            <span>10万</span>
+            <input type="range" name="予算" min="10" max="100" />
+            <span>100万</span>
           </div>
           <h3>その他ご不明な点があればご記入ください。</h3>
           <textarea name="メッセージ" placeholder="本文" />
-          <input type="submit" value="送信" className={css.submit}/>
+          <input type="submit" value="送信" className={css.submit} />
         </form>
       </main>
       <footer>©︎ Minamo</footer>

@@ -66,7 +66,7 @@ export default function Home(props) {
               </ul>
             </div>
           </div>
-          <img src="/big-logo.svg" alt="" />
+          <img src="/big-logo.svg" alt="" />　
         </section>
       </header>
       <main classNames={cssIndex.main}>
