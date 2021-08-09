@@ -10,6 +10,7 @@ import { formatDate } from "lib/date";
 
 import cssIndex from "styles/index.module.scss";
 import cssFooter from "styles/footer.module.scss";
+import recruit from "styles/recruit.module.scss";
 
 export default function Home(props) {
   const { postList } = props;
@@ -311,7 +312,6 @@ export default function Home(props) {
           <p>
             「何とかして彼らの力になることはできないか？」と考えた私たちがその答えの一つとしてたどり着いたのが、「手軽に自分の存在を発信してもらえるプラットフォームを作る」ということでした。
           </p>
-          <h3>MVV</h3>
           <ul className={`${cssIndex.flex} ${cssIndex.mvvFlex}`}>
             <li>
               <h4>Mission</h4>
@@ -354,13 +354,16 @@ export default function Home(props) {
             </li>
             <li>
               <details>
-                <summary>報酬の相場はどのくらい？</summary>
+                <summary>アプリ移行後どうする？</summary>
                 場合にもよりますが、目安は以下の通りです。
               </details>
             </li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>
+            <details>
+                <summary>マッチング後のやり取り</summary>
+                場合にもよりますが、目安は以下の通りです。
+              </details>
+            </li>
           </ul>
         </section>
       </main>
@@ -389,6 +392,15 @@ export default function Home(props) {
           <summary>💬興味がある！</summary>
           <div>
             <p>とりあえず、最新情報を受け取る。</p>
+            <form
+              name="contact-form"
+              action="https://script.google.com/macros/s/AKfycbxSRMLqALn0ZrbVfaih9vLBBbPBs_12ejz5vyBom9a0_cfU4mZAcoN_feNvaj4LAysx/exec"
+              method="get"
+              className={`${cssIndex.flex} ${recruit.form}`}
+            >
+                <input name="メルアド" type="email" placeholder="email@example.com" />
+                <input type="submit" value="送信" className={recruit.submit} />
+            </form>
             <p>問い合わせてみる！</p>
             <p>募集登録してみる！</p>
             <Link href="/recruit">
