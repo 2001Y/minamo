@@ -1,23 +1,56 @@
 .flex {
     display: flex;
     justify-content: space-around;
-
-    h3,
+    h3,h4,
     p {
         text-align: center;
+    }
+    h3,h4 {
+        font-size: 1.4em;
+        small {
+            font-size: .7em;
+            margin-right: .2em;
+        }
+    }
+    img {
+        margin: 3rem auto 1rem auto;
+        width: 60%;
+        height: 10rem;
+        object-fit: contain;
+    }
+}
+
+.mvvFlex {
+    li {
+        width: 33%;
     }
 }
 
 .sticky {
     width: 100vw;
-    margin: 0 calc(50% - 50vw);
-    position: fixed;
-    top: 3rem;/*ブラウザの上からの距離はゼロ*/
-    right: 3rem;
     height: 0;
+    margin: 0 calc(50% - 50vw);
+    margin-top: -14rem;
+    margin-bottom: 14rem;
+    padding: 0 3rem;
+    position: sticky;
+    top: 3rem;
     text-align: right;
+    // display: flex;
+    // align-items: flex-end;
     li {
-        color: #e2e2e2;
+        a {
+            &::after {
+                content: "";
+                display: inline-block;
+                $size: .4em;
+                width: $size;
+                height: $size;
+                margin: (1em - $size * 2)/2 0 (1em - $size * 2)/2 .5em;
+                background: #000;
+                border-radius: 100%;
+            }
+        }
     }
     .active {
         color: #000;
@@ -83,25 +116,23 @@
         z-index: -1;
     }
 }
-
-.intro {
-    height: 45rem;
-    padding-bottom: 15rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .introH2 {
-        font-size: 1em;
-        span {
-            font-size: 3rem;
-            letter-spacing: .3em;
-            margin-top: 1rem;
-            display: block;
-        }
+.main {
+    section {
+        margin-bottom: 7rem;
     }
+}
+.intro {
+    padding-bottom: 15rem;
     p {
         font-size: 1remm;
         margin-top: 1rem;
+    }
+    h2 {
+        line-height: 4em;
+        margin-bottom: 2rem;
+        span {
+            letter-spacing: .2em;
+        }
     }
 }
 
@@ -126,7 +157,11 @@
         }
     }
 }
-
+.whyyoutube {
+    li {
+        width: 33%;
+    }
+}
 .point {
     counter-reset: number;
     h3 {
@@ -135,22 +170,52 @@
     }
     ol {
         padding: 0 2rem;
+        max-width: 45rem;
+        margin: auto;
     }
     li {
-        width: calc(100% - 3rem);
-        max-width: 50rem;
         display: flex;
         align-items: center;
-        margin-bottom: 1.5rem;
+        margin-top: 3rem;
+        padding-right: 3em;
+        // margin-bottom: 1.5rem;
+        h3 {
+            margin-top: .5rem;
+        }
         &:before {
-            font-size: 5rem;
+            font-style: italic;
+            font-size: 8rem;
             font-weight: 700;
             counter-increment: number;
             content: counter(number);
-            margin-right: 1.5rem;
+            margin-right: 3rem;
         }
         &:nth-child(even){
-            margin-left: 3rem;
+            margin-right: -4rem;
+            margin-left: 4rem;
         }
+    }
+}
+.process {
+    li {
+        width: 25%;
+    }
+}
+.plan {
+    h3 {
+        font-size: 4rem;
+        margin-top: 0;
+        small {
+            margin-right: .3em;
+        }
+    }
+    h4 {
+        font-size: 1.5rem;
+    }
+}
+
+.qanda {
+    li {
+        margin-bottom: 1rem;
     }
 }

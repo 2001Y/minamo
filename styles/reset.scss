@@ -42,7 +42,7 @@ a {
 input,
 button,
 select,
-textarea {
+textarea,img {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -73,12 +73,14 @@ input {
         }
     }
 }
-
+summary {
+    outline: none;
+}
 input[type='submit'],
 input[type='button'],
 label,
 button,
-select {
+select,summary {
     cursor: pointer;
 }
 

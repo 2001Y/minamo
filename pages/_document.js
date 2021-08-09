@@ -19,7 +19,7 @@ class MyDocument extends Document {
             crossOrigin="true"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Ubuntu:wght@500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Ubuntu:ital,wght@0,500;0,700;1,700&display=swap"
             rel="stylesheet"
           />
           {GA_TRACKING_ID && (

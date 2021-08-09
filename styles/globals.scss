@@ -22,7 +22,15 @@ body {
   }
 }
 footer {
-  padding: 4em 0;
+  color: #fff;
+  width: 100vw;
+  min-height: 400px;
+  margin: 0 calc(50% - 50vw);
+  padding: 10em calc(50vw - 50%) 3em calc(50vw - 50%);
+  background-image: url("/wave.svg");
+  background-size: 100vw;
+  background-repeat: no-repeat;
+  background-color: #000;
 }
 
 #toc {
@@ -68,17 +76,70 @@ footer {
 
 h2 {
   font-weight: 700;
-  font-size: 3.5rem;
-  display: inline-block;
   margin: 1.3em -.6em .7em -.1em;
-  padding: 0 .6em 0 .1em;
-  background:linear-gradient(transparent 60%, #ec9400 60%);
+  span {
+    font-size: 3.5rem;
+    display: inline;
+    padding: 0 .6em 0 .1em;
+    background:linear-gradient(#ec9400);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size:0 40%;
+    transition: .5s;
+  }
 }
 h3 {
   margin-top: 2em;
   margin-bottom: .5em;
 }
 
+aside {
+  position: fixed;
+  bottom: 1rem;
+  right: 2rem;
+  text-align: right;
+  summary {
+    display: inline-block;
+    padding: .5em 1em;
+    color: #fff;
+    background: #000;
+  }
+  div {
+    text-align: left;
+    padding: 1rem;
+    background: #fff;
+    border-top: solid #000 .3em;
+    border-right: solid #000 .3em;
+    border-left: solid #000 .3em;
+  }
+}
+
+.observer_header {
+  #toc {
+      a {
+          opacity: 1;
+          &::after{
+            display: inline-block !important;
+          }
+      }
+  }
+}
+#toc {
+  a {
+      // opacity: 0;
+      transition: .3s;
+      &::after{
+        opacity: 1;
+      }
+  }
+}
+.observer {
+  h2 {
+      span {
+        background-size:100% 40% !important;
+      }
+  }
+}
 
  /* Prism のコードブロックに影響を与えず <code> にスタイルを追加 */
  code:not([class]) {

@@ -5,7 +5,16 @@ import css from "styles/recruit.module.scss";
 
 import Radio from "components/form/radio";
 
+function checkText() {
+  alert("document.myform.mytext.value");
+  return false;
+}
+
 export default function Home(props) {
+  function checkText() {
+    alert("document.myform.mytext.value");
+    return false;
+  }
   return (
     <>
       <header>
@@ -18,6 +27,7 @@ export default function Home(props) {
           action="https://script.google.com/macros/s/AKfycbxSRMLqALn0ZrbVfaih9vLBBbPBs_12ejz5vyBom9a0_cfU4mZAcoN_feNvaj4LAysx/exec"
           method="get"
           className={css.form}
+          // target="fuga"
         >
           <h3>法人名</h3>
           <input name="法人名" type="text" placeholder="株式会社 EXAMPLE" />

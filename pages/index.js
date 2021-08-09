@@ -9,16 +9,22 @@ import grayMatter from "gray-matter";
 import { formatDate } from "lib/date";
 
 import cssIndex from "styles/index.module.scss";
+import cssFooter from "styles/footer.module.scss";
 
 export default function Home(props) {
   const { postList } = props;
   useEffect(() => {
-    let target = document.querySelectorAll(".observer"),
-      options = { threshold: 0.5 },
+    let target = document.querySelectorAll("*[data-observer]"),
+      options = { threshold: 0.7 },
       observer = new IntersectionObserver(function (e) {
         e.forEach(function (e) {
+          let observerName = e.target.dataset.observer;
           if (e.isIntersecting) {
-            document.body.id = e.target.id + "-body";
+            e.target.classList.add("observer");
+            document.body.classList.add("observer_" + observerName);
+          } else {
+            e.target.classList.remove("observer");
+            document.body.classList.remove("observer_" + observerName);
           }
         });
       }, options);
@@ -28,7 +34,7 @@ export default function Home(props) {
   }, []);
   return (
     <>
-      <header className={cssIndex.header}>
+      <header className={cssIndex.header} data-observer="header">
         <section>
           <div>
             <h1>Minamo</h1>
@@ -51,25 +57,12 @@ export default function Home(props) {
                 </a>
               </Link>
             </div>
-            <div className={cssIndex.news}>
-              <Link href="/news">ニュース</Link>
-              <ul>
-                {postList.map((e, i) => (
-                  <Link href={e.url} key={i} passHref>
-                    <a>
-                      <li>
-                        {e.title} - <time>{e.data}</time>
-                      </li>
-                    </a>
-                  </Link>
-                ))}
-              </ul>
-            </div>
+            <div className={cssIndex.news}></div>
           </div>
-          <img src="/big-logo.svg" alt="" />　
+          <img src="/big-logo.svg" alt="" />
         </section>
       </header>
-      <main classNames={cssIndex.main}>
+      <main className={cssIndex.main}>
         <ul id="toc" className={cssIndex.sticky}>
           <li>
             <a href="#intro">導入</a>
@@ -90,15 +83,14 @@ export default function Home(props) {
             <a href="#plan">プラン</a>
           </li>
         </ul>
-        <section id="intro" className={`${cssIndex.intro} Observer`}>
+        <section id="intro" className={cssIndex.intro} data-observer="intro">
           <div>
             <h2 className={cssIndex.introH2}>
-              「インフルエンサーマーケティング」 を<br />
-              <span>
-                もっと やさしく、
-                <br />
-                もっと みんなに。
-              </span>
+              「インフルエンサーマーケティング」を
+              <br />
+              <span>もっと やさしく、</span>
+              <br />
+              <span>もっと みんなに。</span>
             </h2>
           </div>
           <div>
@@ -117,8 +109,10 @@ export default function Home(props) {
             <p>Minamoが生まれたのは、そんな思いがきっかけでした。</p>
           </div>
         </section>
-        <section id="about" className={`${cssIndex.about} Observer`}>
-          <h2>Minamoとは</h2>
+        <section id="about" className={cssIndex.about} data-observer="about">
+          <h2>
+            <span>Minamoとは</span>
+          </h2>
           <div>
             <p>
               Minamoは、
@@ -141,10 +135,17 @@ export default function Home(props) {
             />
           </div>
         </section>
-        <section id="whyyoutube" className={`${cssIndex.whyyoutube} Observer`}>
-          <h2>なぜYoutube？</h2>
+        <section
+          id="whyyoutube"
+          className={cssIndex.whyyoutube}
+          data-observer="whyyoutube"
+        >
+          <h2>
+            <span>なぜYoutube？</span>
+          </h2>
           <ul className={cssIndex.flex}>
             <li>
+              <img src="/img/index/undraw_People_search_re_5rre.svg" alt="" />
               <h3>一番伝えたい層に発信</h3>
               <p>
                 視聴者層の性別・年齢や
@@ -159,6 +160,7 @@ export default function Home(props) {
               </p>
             </li>
             <li>
+              <img src="/img/index/undraw_video_influencer_9oyy.svg" alt="" />
               <h3>体験している様子を紹介</h3>
               <p>
                 お客さんが一番知りたい
@@ -171,6 +173,7 @@ export default function Home(props) {
               </p>
             </li>
             <li>
+              <img src="/img/index/undraw_media_player_ylg8.svg" alt="" />
               <h3>動画はどこでも活用可能</h3>
               <p>
                 作ってもらった動画は
@@ -182,8 +185,10 @@ export default function Home(props) {
             </li>
           </ul>
         </section>
-        <section id="point" className={`${cssIndex.point} Observer`}>
-          <h2>Minamo 3つの特徴</h2>
+        <section id="point" className={cssIndex.point} data-observer="point">
+          <h2>
+            <span>Minamo 3つの特徴</span>
+          </h2>
           <ol>
             <li>
               <div>
@@ -206,19 +211,23 @@ export default function Home(props) {
               <div>
                 <h3>安心・安全なサポートサービス</h3>
                 <p>
-                  Minamoチームがご相談・マッチング・企画・報酬のやり取りまでいつでもサポート。
-                  <br />
-                  初めての方でも安心してご利用いただけます。
+                  Minamoチームがご相談・マッチング・企画・報酬のやり取りまでいつでもサポート。初めての方でも安心してご利用いただけます。
                 </p>
               </div>
             </li>
           </ol>
         </section>
-        <section id="process" className={`${cssIndex.process} Observer`}>
-          <h2>利用方法</h2>
+        <section
+          id="process"
+          className={cssIndex.process}
+          data-observer="process"
+        >
+          <h2>
+            <span>利用方法</span>
+          </h2>
           <ol className={cssIndex.flex}>
             <li>
-              <img src="" alt="" />
+              <img src="/img/index/undraw_attached_file_n4wm.svg" alt="" />
               <h3>
                 <small>Youtuberを</small>募集
               </h3>
@@ -229,7 +238,7 @@ export default function Home(props) {
               </p>
             </li>
             <li>
-              <img src="" alt="" />
+              <img src="/img/index/undraw_Windows_re_uo4w.svg" alt="" />
               <h3>
                 <small>Youtuberを</small>選ぶ
               </h3>
@@ -240,25 +249,154 @@ export default function Home(props) {
               </p>
             </li>
             <li>
-              <img src="" alt="" />
+              <img src="/img/index/undraw_Agreement_re_d4dv.svg" alt="" />
               <h3>マッチング成立</h3>
               <p></p>
             </li>
             <li>
-              <img src="" alt="" />
+              <img src="/img/index/undraw_online_video_ivvq.svg" alt="" />
               <h3>動画完成</h3>
               <p></p>
             </li>
           </ol>
         </section>
-        <section id="plan" className={cssIndex.plan}>
-          <h2>プラン</h2>
+        <section id="plan" className={cssIndex.plan} data-observer="plan">
+          <h2>
+            <span>プラン</span>
+          </h2>
+          <h3>
+            <small>YouTuberに対する報酬の</small>20%
+          </h3>
+          <p>例えば...</p>
+          <h4>予算12万円の場合</h4>
+          <p>YouTuberに対する報酬 10万 + Minamo使用料 2万</p>
         </section>
-        <section id="aboutus" className={cssIndex.aboutus}>
-          <h2>私たちについて</h2>
+        <section
+          id="aboutus"
+          className={cssIndex.aboutus}
+          data-observer="aboutus"
+        >
+          <h2>
+            <span>私たちについて</span>
+          </h2>
+          <h3>メンバー</h3>
+          <ul className={`${cssIndex.flex} ${cssIndex.mvvFlex}`}>
+            <li>
+              <img src="" alt="" />
+              <h3>Soma Itagaki</h3>
+            </li>
+            <li>
+              <img src="" alt="" />
+              <h3>Nozomi Tsugane</h3>
+            </li>
+            <li>
+              <img src="" alt="" />
+              <h3>Yoshiki Tamura</h3>
+            </li>
+          </ul>
+          <h3>ストーリー</h3>
+          <p>
+            インフルエンサーマーケティングは、他の媒体に比べて安価に、かつ高い宣伝効果を見込める広告手段です。
+          </p>
+          <p>
+            その一方で、「知らない人とお金のやり取りをするのは不安」「企業案件はお金でやらされているようなイメージがある」などクリアしなければならない障壁も多く、まだあまり浸透しているとは言えません。
+          </p>
+          <p>
+            しかし、世の中には「認知」の機会を必要としている物やサービスが
+            まだまだたくさんあります。
+          </p>
+          <p>
+            コロナ禍で客足が伸び悩み、閉店に追いやられてしまう飲食店や、ユーザー数がなかなか増えないまま自然消滅してしまうサービスの数々。
+          </p>
+          <p>
+            「何とかして彼らの力になることはできないか？」と考えた私たちがその答えの一つとしてたどり着いたのが、「手軽に自分の存在を発信してもらえるプラットフォームを作る」ということでした。
+          </p>
+          <h3>MVV</h3>
+          <ul className={`${cssIndex.flex} ${cssIndex.mvvFlex}`}>
+            <li>
+              <h4>Mission</h4>
+              <p>
+                すべての人が自分の「熱意」を
+                <br />
+                発信できる社会を創造する。
+              </p>
+            </li>
+            <li>
+              <h4>Vision</h4>
+              <p>
+                広めたいサービスを持つ人と、
+                <br />
+                それを応援したいクリエイターとのコラボレーションによって、
+                <br />
+                新しい認知のあり方を創出する。
+              </p>
+            </li>
+            <li>
+              <h4>Values</h4>
+              <p>
+                ・「広めたいサービスを持つ人」に寄り添ったサービスを提供する
+                <br />
+                ・「熱意」の発信を「やさしさ」で応援する、想いがめぐるつながりを実現する
+              </p>
+            </li>
+          </ul>
+        </section>
+        <section id="qanda" className={cssIndex.qanda} data-observer="qanda">
+          <h2>
+            <span>よくある質問</span>
+          </h2>
+          <ul>
+            <li>
+              <details>
+                <summary>報酬の相場はどのくらい？</summary>
+                場合にもよりますが、目安は以下の通りです。
+              </details>
+            </li>
+            <li>
+              <details>
+                <summary>報酬の相場はどのくらい？</summary>
+                場合にもよりますが、目安は以下の通りです。
+              </details>
+            </li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
         </section>
       </main>
-      <footer>©︎ Minamo</footer>
+      <footer className={cssFooter.footer}>
+        <div className={cssFooter.news}>
+          <h5>ニュース</h5>
+          <ul>
+            {postList.map((e, i) => (
+              <Link href={e.url} key={i} passHref>
+                <a>
+                  <li>
+                    {e.title} - <time>{e.data}</time>
+                  </li>
+                </a>
+              </Link>
+            ))}
+            <Link href="/news">
+              <a className={cssFooter.more}>...more</a>
+            </Link>
+          </ul>
+        </div>
+        ©︎ Minamo
+      </footer>
+      <aside>
+        <details>
+          <summary>💬興味がある！</summary>
+          <div>
+            <p>とりあえず、最新情報を受け取る。</p>
+            <p>問い合わせてみる！</p>
+            <p>募集登録してみる！</p>
+            <Link href="/recruit">
+              <a>無料で掲載する！</a>
+            </Link>
+          </div>
+        </details>
+      </aside>
     </>
   );
 }
