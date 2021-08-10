@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 
 import css from "styles/recruit.module.scss";
+import header from "styles/header.module.scss";
 
 import Radio from "components/form/radio";
 
@@ -17,11 +18,22 @@ export default function Home(props) {
   }
   return (
     <>
-      <header>
-        <h1>Minamo</h1>
+      <header className={header.header}>
+        <Link href="/">
+          <a>
+            <img src="/headerLogo.svg" alt="" className={header.logo} />
+          </a>
+        </Link>
+        <Link href="/">
+          <a>
+            <h1>Minamo</h1>
+          </a>
+        </Link>
       </header>
       <main>
-        <h2>募集登録フォーム</h2>
+        <h2 className="noAnime">
+          <span>募集登録フォーム</span>
+        </h2>
         <form
           name="contact-form"
           action="https://script.google.com/macros/s/AKfycbxSRMLqALn0ZrbVfaih9vLBBbPBs_12ejz5vyBom9a0_cfU4mZAcoN_feNvaj4LAysx/exec"

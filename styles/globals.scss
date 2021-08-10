@@ -3,7 +3,6 @@
 }
 p {
   line-height: 1.7;
-  // letter-spacing: .1em;
 }
 body {
   padding: 0 1rem;
@@ -16,9 +15,16 @@ body {
     width: 100vw;
     height: 100vh;
     border: solid #000 1rem;
+    z-index: 9999999;
     @supports (-webkit-touch-callout: none) {
       height: -webkit-fill-available;
     }
+  }
+}
+header {
+
+  h1 {
+    font-size: 3rem;
   }
 }
 footer {
@@ -39,10 +45,10 @@ footer {
   }
 }
 #loadbar {
-  height: 7px;
+  height: 1rem;;
   width: 0;
-  background-color: aqua;
-  box-shadow: 0 0 11px 0 aqua;
+  background-color: #ec9400;
+  box-shadow: 0 0 11px 0 #ec9400;
   position: fixed;
   top: 0;
   left: 0;
@@ -86,6 +92,11 @@ h2 {
     background-position: bottom left;
     background-size:0 40%;
     transition: .5s;
+  }
+  &.noAnime {
+    span {
+      background-size:100% 40% !important;
+    }
   }
 }
 h3 {

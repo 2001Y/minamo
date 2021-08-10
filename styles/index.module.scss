@@ -1,8 +1,7 @@
 .flex {
     display: flex;
     justify-content: space-around;
-    h3,h4,
-    p {
+    h3,h4,p {
         text-align: center;
     }
     h3,h4 {
@@ -32,7 +31,6 @@
 }
 
 .sticky {
-    width: 100vw;
     height: 0;
     margin: 0 calc(50% - 50vw);
     margin-top: -14rem;
@@ -40,11 +38,12 @@
     padding: 0 3rem;
     position: sticky;
     top: 3rem;
+    right: 3rem;
     text-align: right;
-    // display: flex;
-    // align-items: flex-end;
+    pointer-events: none;
     li {
         a {
+            pointer-events: auto;
             &::after {
                 content: "";
                 display: inline-block;
@@ -85,6 +84,7 @@
         }
         .boshu {
             font-size: 1.5rem;
+            font-weight: bold;
             padding: .6em 1.5em;
             margin: 0 -1.5em;
             border-radius: 99em;

@@ -50,7 +50,7 @@ export default function Home(props) {
               <Link href="/youtuber">
                 <a className={cssIndex.youtuber}>Youtuberの方はこちら</a>
               </Link>
-              <Link href="/obo">
+              <Link href="/recruit">
                 <a className={cssIndex.boshu}>
                   無料で
                   <br />
@@ -347,21 +347,15 @@ export default function Home(props) {
           </h2>
           <ul>
             <li>
-              <details>
+              <details open>
                 <summary>報酬の相場はどのくらい？</summary>
                 場合にもよりますが、目安は以下の通りです。
               </details>
             </li>
             <li>
               <details>
-                <summary>アプリ移行後どうする？</summary>
-                場合にもよりますが、目安は以下の通りです。
-              </details>
-            </li>
-            <li>
-            <details>
                 <summary>マッチング後のやり取り</summary>
-                場合にもよりますが、目安は以下の通りです。
+                LINE@を用いてコミュニケーションに加えて、Zoomまたは対面の打ち合わせを行います。
               </details>
             </li>
           </ul>
@@ -398,8 +392,12 @@ export default function Home(props) {
               method="get"
               className={`${cssIndex.flex} ${recruit.form}`}
             >
-                <input name="メルアド" type="email" placeholder="email@example.com" />
-                <input type="submit" value="送信" className={recruit.submit} />
+              <input
+                name="メルアド"
+                type="email"
+                placeholder="email@example.com"
+              />
+              <input type="submit" value="送信" className={recruit.submit} />
             </form>
             <p>問い合わせてみる！</p>
             <p>募集登録してみる！</p>
