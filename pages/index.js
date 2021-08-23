@@ -11,6 +11,7 @@ import { formatDate } from "lib/date";
 import cssIndex from "styles/index.module.scss";
 import cssFooter from "styles/footer.module.scss";
 import recruit from "styles/recruit.module.scss";
+// import fixedPop from "styles/fixedPop.module.scss";
 
 export default function Home(props) {
   const { postList } = props;
@@ -58,7 +59,6 @@ export default function Home(props) {
                 </a>
               </Link>
             </div>
-            <div className={cssIndex.news}></div>
           </div>
           <img src="/big-logo.svg" alt="" />
         </section>
@@ -66,22 +66,34 @@ export default function Home(props) {
       <main className={cssIndex.main}>
         <ul id="toc" className={cssIndex.sticky}>
           <li>
-            <a href="#intro">導入</a>
+            <a href="#intro">
+              <span>導入</span>
+            </a>
           </li>
           <li>
-            <a href="#about">Minamoとは</a>
+            <a href="#about">
+              <span>Minamoとは</span>
+            </a>
           </li>
           <li>
-            <a href="#whyyoutube">なぜYoutuber？</a>
+            <a href="#whyyoutube">
+              <span>なぜYoutuber？</span>
+            </a>
           </li>
           <li>
-            <a href="#point">3つの特徴</a>
+            <a href="#point">
+              <span>3つの特徴</span>
+            </a>
           </li>
           <li>
-            <a href="#process">利用方法</a>
+            <a href="#process">
+              <span>利用方法</span>
+            </a>
           </li>
           <li>
-            <a href="#plan">プラン</a>
+            <a href="#plan">
+              <span>プラン</span>
+            </a>
           </li>
         </ul>
         <section id="intro" className={cssIndex.intro} data-observer="intro">
@@ -272,80 +284,6 @@ export default function Home(props) {
           <h4>予算12万円の場合</h4>
           <p>YouTuberに対する報酬 10万 + Minamo使用料 2万</p>
         </section>
-        <section
-          id="aboutus"
-          className={cssIndex.aboutus}
-          data-observer="aboutus"
-        >
-          <h2>
-            <span>私たちについて</span>
-          </h2>
-          <article>
-            <p>
-              インフルエンサーマーケティングは、他の媒体に比べて安価に、
-              <br />
-              かつ高い宣伝効果を見込める広告手段です。
-            </p>
-            <p>
-              その一方で、
-              <br />
-              「知らない人とお金のやり取りをするのは不安」
-              <br />
-              「企業案件はお金でやらされているようなイメージがある」など
-            </p>
-            <p>
-              クリアしなければならない障壁も多く、まだあまり浸透しているとは言えません。
-            </p>
-            <p>
-              しかし、
-              <br />
-              世の中には「認知」の機会を必要としている物やサービスが
-              まだまだたくさんあります。
-            </p>
-            <p>
-              コロナ禍で客足が伸び悩み、閉店に追いやられてしまう飲食店や、ユーザー数がなかなか増えないまま自然消滅してしまうサービスの数々。
-            </p>
-            <p>
-              「何とかして彼らの力になることはできないか？」と考えた私たちの答えの一つが、
-              <br />
-              「手軽に自分の存在を発信してもらえるプラットフォーム」でした。
-            </p>
-          </article>
-          <ul className={`${cssIndex.flex} ${cssIndex.mvvFlex}`}>
-            <li>
-              <h4>Mission</h4>
-              <p>
-                すべての人が自分の「熱意」を
-                <br />
-                発信できる社会を創造する。
-              </p>
-            </li>
-            <li>
-              <h4>Vision</h4>
-              <p>
-                広めたいサービスを持つ人と、
-                <br />
-                それを応援したいクリエイターとのコラボレーションによって、
-                <br />
-                新しい認知のあり方を創出する。
-              </p>
-            </li>
-            <li>
-              <h4>Values</h4>
-              <p>
-                ・「広めたいサービスを持つ人」に寄り添ったサービスを提供する
-                <br />
-                ・「熱意」の発信を「やさしさ」で応援する、想いがめぐるつながりを実現する
-              </p>
-            </li>
-          </ul>
-          <h3>メンバー</h3>
-          <ul>
-            <li>板垣壮真（東京大学文科二類2年）</li>
-            <li>津金希美（東京大学文科一類2年）</li>
-            <li>田村義希（武蔵野美術大学2年）</li>
-          </ul>
-        </section>
         <section id="qanda" className={cssIndex.qanda} data-observer="qanda">
           <h2>
             <span>よくある質問</span>
@@ -390,6 +328,10 @@ export default function Home(props) {
         <details>
           <summary>💬興味がある！</summary>
           <div>
+            <p>誰がやってるの？</p>
+            <Link href="/aboutus">
+              <a>私たちについて</a>
+            </Link>
             <p>とりあえず、最新情報を受け取る。</p>
             <form
               name="contact-form"
@@ -402,12 +344,13 @@ export default function Home(props) {
                 type="email"
                 placeholder="email@example.com"
               />
-              <input type="submit" value="送信" className={recruit.submit} />
+              <input type="submit" value="送信" />
             </form>
             <p>問い合わせてみる！</p>
             <p>募集登録してみる！</p>
+
             <Link href="/recruit">
-              <a>無料で掲載する！</a>
+              <a>無料で掲載</a>
             </Link>
           </div>
         </details>
