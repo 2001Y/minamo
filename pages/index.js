@@ -36,12 +36,15 @@ export default function Home(props) {
   }, []);
   return (
     <>
+      <Head>
+        <title>Minamo｜やさしさでつながる、新しい広告のカタチ。</title>
+      </Head>
       <header className={cssIndex.header} data-observer="header">
         <section>
           <div>
             <h1>Minamo</h1>
             <p>
-              やさしさでつながる
+              やさしさでつながる、
               <br />
               新しい広告のカタチ。
             </p>
@@ -342,12 +345,8 @@ export default function Home(props) {
                       </tr>
                       <tr className={cssIndex.small}>
                         <td></td>
-                        <td>
-                          ※100円/clickとして計算
-                        </td>
-                        <td>
-                          ※50円/clickとして計算
-                        </td>
+                        <td>※100円/clickとして計算</td>
+                        <td>※50円/clickとして計算</td>
                         <td></td>
                       </tr>
                     </tbody>
@@ -399,18 +398,49 @@ export default function Home(props) {
             <p>とりあえず、最新情報を受け取る。</p>
             <form
               name="contact-form"
-              action="https://script.google.com/macros/s/AKfycbxSRMLqALn0ZrbVfaih9vLBBbPBs_12ejz5vyBom9a0_cfU4mZAcoN_feNvaj4LAysx/exec"
+              action="https://script.google.com/macros/s/AKfycbxYhPIRqhO9R5DmHunbrdE5YRASvQadPmz-AbOXUCcprYHTwgLQuDWehzRbxP09K6LW/exec"
               method="get"
-              className={`${cssIndex.flex} ${recruit.form}`}
+              className={recruit.form}
             >
               <input
                 name="メルアド"
                 type="email"
                 placeholder="email@example.com"
+                required
               />
               <input type="submit" value="送信" />
             </form>
             <p>問い合わせてみる！</p>
+            <form
+              action="https://api.staticforms.xyz/submit"
+              method="post"
+              className={recruit.form}
+            >
+              <textarea
+                name="message"
+                placeholder="お問い合わせ内容"
+                required
+              ></textarea>
+              <input
+                type="email"
+                name="emai;"
+                placeholder="email@example.com"
+                required
+              />
+              <input
+                type="hidden"
+                name="accessKey"
+                value="c0482a40-f51c-4d95-b248-24dc7fd73ab1"
+              />
+              <input type="hidden" name="replyTo" value="@" />
+              <input
+                type="hidden"
+                name="redirectTo"
+                value="https://minamo.cc/recruit/done"
+              />
+              <input type="hidden" name="subject" value="お問い合わせ" />
+              <input type="submit" value="送信" />
+            </form>
             <p>募集登録してみる！</p>
 
             <Link href="/recruit">

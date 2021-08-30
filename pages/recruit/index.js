@@ -18,6 +18,9 @@ export default function Home(props) {
   }
   return (
     <>
+      <Head>
+        <title>募集登録フォーム｜Minamo</title>
+      </Head>
       <header className={header.header}>
         <Link href="/">
           <a>
@@ -42,11 +45,21 @@ export default function Home(props) {
           // target="fuga"
         >
           <h3>法人名</h3>
-          <input name="法人名" type="text" placeholder="株式会社 EXAMPLE" />
+          <input
+            name="法人名"
+            type="text"
+            placeholder="株式会社 EXAMPLE"
+            required
+          />
           <h3>メールアドレス</h3>
-          <input name="メルアド" type="email" placeholder="email@example.com" />
+          <input
+            name="メルアド"
+            type="email"
+            placeholder="email@example.com"
+            required
+          />
           <h3>担当者さまのお名前</h3>
-          <input name="name" type="text" placeholder="水面 太郎" />
+          <input name="name" type="text" placeholder="水面 太郎" required />
           <h3>サービス導入についての立場</h3>
           <div className={css.radio}>
             <Radio name="サービス導入についての立場" value="最終決定権がある" />
@@ -65,7 +78,7 @@ export default function Home(props) {
           <h3>どのようなモノ/コトを紹介したいですか？</h3>
           <div className={css.flex}>
             <h4>説明</h4>
-            <textarea name="企画内容" placeholder="本文" />
+            <textarea name="企画内容" placeholder="本文" required />
           </div>
           <div className={css.flex}>
             <h4>URL</h4>
@@ -73,12 +86,13 @@ export default function Home(props) {
               name="企画URL"
               type="url"
               placeholder="https://example.com"
+              required
             />
           </div>
           <h3>ご予算</h3>
           <div className={css.flex}>
             <span>10万</span>
-            <input type="range" name="予算" min="10" max="100" />
+            <input type="range" name="予算" min="10" max="100" required />
             <span>100万</span>
           </div>
           <h3>その他ご不明な点があればご記入ください。</h3>

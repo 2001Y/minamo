@@ -7,7 +7,7 @@ const Radio = (props) => {
 
   return (
     <>
-      <input type="radio" name={name} value={value} id={htmlFor} />
+      <input type="radio" name={name} value={value} id={htmlFor} required />
       <label htmlFor={htmlFor}>{value}</label>
     </>
   );

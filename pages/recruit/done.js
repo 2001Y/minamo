@@ -1,20 +1,36 @@
 import Head from "next/head";
 import Link from "next/link";
 
-import css from "styles/recruit.module.scss";
-
-import Radio from "components/form/radio";
+import header from "styles/header.module.scss";
 
 export default function Home(props) {
   return (
     <>
-      <header>
-        <h1>Minamo</h1>
+      <Head>
+        <title>送信完了｜Minamo</title>
+      </Head>
+      <header className={header.header}>
+        <Link href="/">
+          <a>
+            <img src="/headerLogo.svg" alt="" className={header.logo} />
+          </a>
+        </Link>
+        <Link href="/">
+          <a>
+            <h1>Minamo</h1>
+          </a>
+        </Link>
       </header>
       <main>
-        <h3>送信完了</h3>
+        <h2 className="noAnime">
+          <span>送信完了</span>
+        </h2>
         <p>ありがとうございました。</p>
-        <a href="/"></a>
+        <p>
+          <Link href="/">
+            <a>＞トップへ戻る</a>
+          </Link>
+        </p>
       </main>
       <footer>©︎ Minamo</footer>
     </>
