@@ -292,13 +292,77 @@ export default function Home(props) {
             <li>
               <details open>
                 <summary>報酬の相場はどのくらい？</summary>
-                場合にもよりますが、目安は以下の通りです。
+                <div className={cssIndex.answer}>
+                  <p>場合にもよりますが、目安は以下の通りです。</p>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>平均視聴回数</th>
+                        <th>報酬の目安</th>
+                      </tr>
+                      <tr>
+                        <td>〜1万回</td>
+                        <td>5万円</td>
+                      </tr>
+                      <tr>
+                        <td>〜2万回</td>
+                        <td>10万円</td>
+                      </tr>
+                      <tr>
+                        <td>〜5万回</td>
+                        <td>20万円</td>
+                      </tr>
+                      <tr>
+                        <td>〜10万回</td>
+                        <td>30万円</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h3>他の広告媒体との比較</h3>
+                  <p>上の視聴回数を他のSNS広告のクリック数に換算すると・・・</p>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <th>クリック数</th>
+                        <th>Instagram広告</th>
+                        <th>Facebook広告</th>
+                        <th className={cssIndex.active}>Minamo</th>
+                      </tr>
+                      <tr>
+                        <td>〜1万回</td>
+                        <td>約50万円</td>
+                        <td>約100万円</td>
+                        <td className={cssIndex.active}>約6万円</td>
+                      </tr>
+                      <tr>
+                        <td>〜2万回</td>
+                        <td>約100万円</td>
+                        <td>約200万円</td>
+                        <td className={cssIndex.active}>約12万円</td>
+                      </tr>
+                      <tr className={cssIndex.small}>
+                        <td></td>
+                        <td>
+                          ※100円/clickとして計算
+                        </td>
+                        <td>
+                          ※50円/clickとして計算
+                        </td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </details>
             </li>
             <li>
               <details>
                 <summary>マッチング後のやり取り</summary>
-                LINE@を用いてコミュニケーションに加えて、Zoomまたは対面の打ち合わせを行います。
+                <div className={cssIndex.answer}>
+                  <p>
+                    LINE@を用いてコミュニケーションに加えて、Zoomまたは対面の打ち合わせを行います。
+                  </p>
+                </div>
               </details>
             </li>
           </ul>

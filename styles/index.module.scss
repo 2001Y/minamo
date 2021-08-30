@@ -1,3 +1,4 @@
+@use "sass:math";
 .flex {
     @media (min-width: 600px) {
         display: flex;
@@ -70,6 +71,7 @@
     right: 3rem;
     text-align: right;
     pointer-events: none;
+    z-index: -9;
     li {
         a {
             pointer-events: auto;
@@ -79,7 +81,8 @@
                 $size: .4em;
                 width: $size;
                 height: $size;
-                margin: (1em - $size * 2)/2 0 (1em - $size * 2)/2 .5em;
+                $marginX: math.div( 1em - $size * 2, 2 );
+                margin: $marginX 0 $marginX .5em;
                 background: #000;
                 border-radius: 100%;
             }
@@ -100,7 +103,7 @@
         }
     }
     section {
-        height: 100vh;
+        height: calc(var(--vh_bar,1vh) * 100);
         padding: 7rem 0;
         display: flex;
         flex-direction: column;
@@ -280,7 +283,38 @@
 }
 
 .qanda {
+    ul {
+        margin-top: 2rem;
+    }
     li {
         margin-bottom: 1rem;
+    }
+    summary {
+        background: #000;
+        color: #fff;
+        width: fit-content;
+        padding: .3em .5em;
+        line-height: 1em;
+    }
+    .answer {
+        margin: 1rem;
+        margin-bottom: 3rem;
+        table {
+            margin: 1rem 0;
+            th,td {
+                padding: .3rem 1rem;
+            }
+            th {
+                border-bottom: solid #000 1px;
+            }
+            .small {
+                font-size: .5em;
+                margin-top: -.5em;
+            }
+            .active {
+                background: #000;
+                color: #fff;
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ import header from "styles/header.module.scss";
 import Radio from "components/form/radio";
 
 import cssIndex from "styles/index.module.scss";
+import recruit from "styles/recruit.module.scss";
 
 function checkText() {
   alert("document.myform.mytext.value");
@@ -103,6 +104,37 @@ export default function Home(props) {
           </ul>
       </main>
       <footer>©︎ Minamo</footer>
+      <aside>
+        <details>
+          <summary>💬興味がある！</summary>
+          <div>
+            <p>誰がやってるの？</p>
+            <Link href="/aboutus">
+              <a>私たちについて</a>
+            </Link>
+            <p>とりあえず、最新情報を受け取る。</p>
+            <form
+              name="contact-form"
+              action="https://script.google.com/macros/s/AKfycbxSRMLqALn0ZrbVfaih9vLBBbPBs_12ejz5vyBom9a0_cfU4mZAcoN_feNvaj4LAysx/exec"
+              method="get"
+              className={`${cssIndex.flex} ${recruit.form}`}
+            >
+              <input
+                name="メルアド"
+                type="email"
+                placeholder="email@example.com"
+              />
+              <input type="submit" value="送信" />
+            </form>
+            <p>問い合わせてみる！</p>
+            <p>募集登録してみる！</p>
+
+            <Link href="/recruit">
+              <a>無料で掲載</a>
+            </Link>
+          </div>
+        </details>
+      </aside>
     </>
   );
 }
